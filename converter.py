@@ -34,7 +34,7 @@ class Converter():
 
         if type(input_data) is not np.ndarray:
             input_data = np.array([input_data])
-            
+
         #Function taken from here: https://discuss.pynq.io/t/how-to-use-ap-fixed-data-type-to-communicate-with-the-ip-made-by-the-vivado-hls/679/5
         condition = 1 << (total_bits - 1)
         mask = (~((1 << total_bits) - 1)) & 0xFFFFFFFF
