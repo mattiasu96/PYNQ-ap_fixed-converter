@@ -6,7 +6,7 @@ class Converter():
     def forward_conversion(self, input_data, signed, total_bits, fractional_bits):
         '''
 
-        Converts input data from float/int to ap_fixed with total bits and fractional_bits and returns its uint32 equivalent
+        Converts input data from float/int python data types to ap_fixed with total bits and fractional_bits and returns its uint32 equivalent
 
         :param input_data: can be both a single int/float number or a numpy array
         :param signed: Boolean, if the input data is signed or not
