@@ -12,5 +12,45 @@ However, Python doesn't support ap_fixed data types, so we need to convert our f
 
 ## Example
 
+This is our simple IP code inside Vitis HLS:
 
 
+    #include "ap_axi_sdata.h"
+    #include "hls_stream.h"
+    #include <ap_fixed.h>
+
+    typedef struct {
+      ap_fixed<28, 6> first_value;
+      ap_fixed<28, 6> second_value;
+      ap_fixed<28, 6> third_value;
+
+    } my_data_struct;
+
+    typedef hls::axis<my_data_struct,0,0,0> pkt_t;
+
+    typedef hls::axis<ap_fixed<28,6>,0,0,0> pkt_t_out;
+
+    void mult_stream(
+        hls::stream< pkt_t > &din,
+        hls::stream< pkt_t_out > &dout ) {
+      #pragma HLS INTERFACE ap_ctrl_none port=return
+      #pragma HLS INTERFACE axis port=din
+      #pragma HLS INTERFACE axis port=dout
+
+      pkt_t pkt;
+      pkt_t_out pkt_out;
+
+      din.read(pkt);
+
+      pkt_out.data = pkt.data.first_value + pkt.data.second_value + pkt.data.third_value;
+      pkt_out.last = pkt.last;
+      pkt_out.keep = pkt.keep;
+      pkt_out.strb = pkt.strb;
+
+      dout.write(pkt_out);
+    }
+Which sums 3 input numbers. 
+
+We export our IP and we can test it with the following block design: 
+
+![Block design](https://imgur.com/a/tvQyW6o.png)
