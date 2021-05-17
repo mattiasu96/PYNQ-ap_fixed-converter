@@ -9,6 +9,7 @@ PYNQ is a framework that allows the user to control the board using high level P
 
 However, Python doesn't support ap_fixed data types, so we need to convert our float/int/ecc... Python data types to something that is compatible with our hardware ports/interfaces. 
 
+The code requires the [fxp math](https://github.com/francof2a/fxpmath) library installed. 
 
 ## Example
 
