@@ -60,6 +60,6 @@ Docs [here](https://www.xilinx.com/support/documentation/ip_documentation/axis_i
 
 Finally, we have to synthesize our  design and import it into our board. You can find more [here](https://www.youtube.com/watch?v=Dupyek4NUoI&ab_channel=FPGADeveloper)
 
-FInally we can test our design with a Python notebook, you can find the full code here.
+Last but not least, we can test our design with a Python notebook, you can find the full code [here](./axis_multiplier.ipynb).
 
 
